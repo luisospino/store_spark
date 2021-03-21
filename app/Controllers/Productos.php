@@ -25,19 +25,19 @@ class Productos extends BaseController
     public function index($activo = 1)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
 
         $productos = $this->productos->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Productos', 'datos' => $productos];
         
-        return view('header').view('productos/productos', $array).view('footer');
+        return view('header').view('productos/inicio', $array).view('footer');
     }
 
     public function eliminados($activo = 0)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
         
         $productos = $this->productos->where('activo', $activo)->findAll();
@@ -46,29 +46,29 @@ class Productos extends BaseController
         return view('header').view('productos/eliminados', $array).view('footer');
     }
     
-    public function nuevo()
+    public function crear()
     {   
         session();  
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $unidades = $this->unidades->where('activo', 1)->findAll();
         $categorias = $this->categorias->where('activo', 1)->findAll();
         $array = ['titulo' => 'Agregar producto', 'unidades' => $unidades, 'categorias' => $categorias, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('productos/nuevo', $array).view('footer');
+        return view('header').view('productos/crear', $array).view('footer');
     }
 
     public function insertar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('productos')){
@@ -84,7 +84,7 @@ class Productos extends BaseController
                 'id_unidad' => $this->request->getPost('id_unidad'),
                 'id_categoria' => $this->request->getPost('id_categoria')]);
 
-            return redirect()->to(base_url().'/productos')->with('exito', 'Producto creado exitosamente');
+            return redirect()->to(route_to('productos.inicio'))->with('exito', 'Producto creado exitosamente');
         }
         
         return redirect()->back()->withInput();
@@ -95,9 +95,9 @@ class Productos extends BaseController
         session();  
         
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $unidades = $this->unidades->where('activo', 1)->findAll();
@@ -112,9 +112,9 @@ class Productos extends BaseController
     public function actualizar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('productos')){
@@ -136,7 +136,7 @@ class Productos extends BaseController
                 'id_unidad' => $this->request->getPost('id_unidad'),
                 'id_categoria' => $this->request->getPost('id_categoria')]);
     
-                return redirect()->to(base_url().'/productos')->with('exito', 'Producto actualizado exitosamente');
+                return redirect()->to(route_to('productos.inicio'))->with('exito', 'Producto actualizado exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -145,9 +145,9 @@ class Productos extends BaseController
     public function eliminar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->productos->update($id, ['activo' => 0]);
@@ -158,9 +158,9 @@ class Productos extends BaseController
     public function reingresar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $this->productos->update($id, ['activo' => 1]);
@@ -171,9 +171,9 @@ class Productos extends BaseController
     public function obtenerProductos($search)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Supervisor'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $productos = $this->productos->like('codigo', $search)->where('activo', 1)->findAll();
@@ -184,9 +184,9 @@ class Productos extends BaseController
     public function generarCodigoBarra($codigo){
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $generador = new \Barcode_generator();
@@ -196,9 +196,9 @@ class Productos extends BaseController
     public function eliminarCodigoBarra($codigo){
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if(file_exists(ROOTPATH.'/public/img/barcodes/'.$codigo.'.png')){
@@ -208,9 +208,9 @@ class Productos extends BaseController
 
     public function verCodigosBarrasPdf(){
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         return view('header').view('productos/verCodigosBarrasPdf').view('footer');
@@ -218,9 +218,9 @@ class Productos extends BaseController
 
     public function generarCodigosBarrasPdf(){
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $pdf = new \FPDF('P', 'mm', 'letter');
@@ -273,9 +273,9 @@ class Productos extends BaseController
     public function verCodigosBarrasEliminadosPdf(){
         
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         return view('header').view('productos/verCodigosBarrasEliminadosPdf').view('footer');
@@ -283,9 +283,9 @@ class Productos extends BaseController
 
     public function generarCodigosBarrasEliminadosPdf(){
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $pdf = new \FPDF('P', 'mm', 'letter');

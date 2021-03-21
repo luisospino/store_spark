@@ -14,9 +14,9 @@
 
             <div>
                 <p>
-                    <a href="<?= base_url() ?>/productos" class = "btn btn-sm btn-warning">Productos</a>
+                    <a href="<?= route_to('productos.inicio')?>" class = "btn btn-sm btn-warning">Productos</a>
                     <?php if(session()->get('rol') == 'Administrador' || session()->get('rol') == 'Supervisor'){ ?>
-                        <a href="<?= base_url() ?>/productos/verCodigosBarrasEliminadosPdf" class = "btn btn-sm btn-success">Códigos de barras eliminados</a>
+                        <a href="<?= route_to('productos.verCodigosBarrasEliminados') ?>" class = "btn btn-sm btn-success">Códigos de barras eliminados</a>
                     <?php } ?>
                 </p>
             </div>
@@ -48,7 +48,7 @@
 
                                 <?php if(session()->get('rol') == 'Administrador'){ ?>                                    
                                     <td class = "text-center">
-                                        <a href="#" data-href = "<?= base_url().'/productos/reingresar/'. $dato['id'] ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Reingresar registro" class = "btn btn-sm btn-danger">
+                                        <a href="#" data-href = "<?= route_to('productos.reingresar', $dato['id']) ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Reingresar registro" class = "btn btn-sm btn-danger">
                                             <i class = "fas fa-arrow-alt-circle-up"></i>
                                         </a>
                                     </td>

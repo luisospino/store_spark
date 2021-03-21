@@ -19,10 +19,10 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  */
 $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Usuarios');
-$routes->setDefaultMethod('index');
+$routes->setDefaultMethod('login');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -32,7 +32,25 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Usuarios::login');
+$routes->get('/', 'Usuarios::login', ['as' => 'login']);
+
+$routes->group('productos', function($routes){//RUTAS DE PRODUCTOS
+	
+    $routes->get('', 'Productos::index', ['as' => 'productos.inicio']);
+	$routes->get('crear', 'Productos::crear', ['as' => 'productos.crear']);
+	$routes->post('insertar', 'Productos::insertar', ['as' => 'productos.insertar']);
+	$routes->get('editar/(:num)', 'Productos::editar/$1', ['as' => 'productos.editar']);
+	$routes->post('actualizar', 'Productos::actualizar', ['as' => 'productos.actualizar']);
+	$routes->get('eliminar/(:num)', 'Productos::eliminar/$1', ['as' => 'productos.eliminar']);
+	$routes->get('eliminados', 'Productos::eliminados', ['as' => 'productos.eliminados']);
+	$routes->get('reingresar/(:num)', 'Productos::reingresar/$1', ['as' => 'productos.reingresar']);
+
+	$routes->get('verCodigosBarrasPdf', 'Productos::verCodigosBarrasPdf', ['as' => 'productos.verCodigosBarras']);
+	$routes->get('generarCodigosBarrasPdf', 'Productos::generarCodigosBarrasPdf', ['as' => 'productos.generarCodigosBarras']);
+
+	$routes->get('verCodigosBarrasEliminadosPdf', 'Productos::verCodigosBarrasEliminadosPdf', ['as' => 'productos.verCodigosBarrasEliminados']);
+	$routes->get('generarCodigosBarrasEliminadosPdf', 'Productos::generarCodigosBarrasEliminadosPdf', ['as' => 'productos.generarCodigosBarrasEliminados']);	
+});
 
 /*
  * --------------------------------------------------------------------

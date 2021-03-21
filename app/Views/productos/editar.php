@@ -16,7 +16,7 @@
             }
             ?>
 
-            <form method = "POST" action="<?= base_url(); ?>/productos/actualizar" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('productos.actualizar')?>" autocomplete = "off">
                 <input type="hidden" name = "id" value = "<?= $producto['id'] ?>">
 
                 <div class="form-group">
@@ -125,7 +125,7 @@
                 </div>
                 
                 <div class="text-center">
-                    <a href="<?= base_url();?>/productos" class = "btn btn-sm btn-primary">Regresar</a>   
+                    <a href="<?= route_to('productos.inicio')?>" class = "btn btn-sm btn-primary">Regresar</a>   
                     <button type="submit" class = "btn btn-sm btn-success">Guardar</button>                
                 </div>
             </form>

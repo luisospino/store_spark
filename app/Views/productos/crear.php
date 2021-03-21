@@ -16,7 +16,7 @@
             }
             ?>
 
-            <form method = "POST" action="<?= base_url(); ?>/productos/insertar" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('productos.insertar') ?>" autocomplete = "off">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-12 col-sm-6">
@@ -90,7 +90,7 @@
                 </div>
                 
                 <div class = "text-center">
-                    <a href="<?= base_url();?>/productos" class = "btn btn-sm btn-primary">Regresar</a>   
+                    <a href="<?= route_to('productos.inicio') ?>" class = "btn btn-sm btn-primary">Regresar</a>   
                     <button type="submit" class = "btn btn-sm btn-success">Guardar</button>
                 </div>
 
