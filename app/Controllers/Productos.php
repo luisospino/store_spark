@@ -190,7 +190,7 @@ class Productos extends BaseController
         }
 
         $generador = new \Barcode_generator();
-        $generador->barcode(ROOTPATH.'/img/barcodes/'.$codigo.'.png', $codigo, 30, "horizontal", "code128", true);
+        $generador->barcode(ROOTPATH.'/public/img/barcodes/'.$codigo.'.png', $codigo, 30, "horizontal", "code128", true);
     }
 
     public function eliminarCodigoBarra($codigo){
