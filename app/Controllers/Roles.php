@@ -19,23 +19,23 @@ class Roles extends BaseController
     public function index($activo = 1)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $roles = $this->roles->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Roles', 'datos' => $roles];
         
-        return view('header').view('roles/roles', $array).view('footer');
+        return view('header').view('roles/inicio', $array).view('footer');
     }
 
     public function eliminados($activo = 0)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $roles = $this->roles->where('activo', $activo)->findAll();
@@ -44,34 +44,34 @@ class Roles extends BaseController
         return view('header').view('roles/eliminados', $array).view('footer');
     }
     
-    public function nuevo()
+    public function crear()
     {   
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $array = ['titulo' => 'Agregar rol', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('roles/nuevo', $array).view('footer');
+        return view('header').view('roles/crear', $array).view('footer');
     }
 
     public function insertar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('roles')){
 
             $this->roles->save(['nombre' => $this->request->getPost('nombre')]);
     
-            return redirect()->to(base_url().'/roles')->with('exito', 'Rol creado exitosamente');
+            return redirect()->to(route_to('roles.inicio'))->with('exito', 'Rol creado exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -82,9 +82,9 @@ class Roles extends BaseController
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $rol = $this->roles->where('id', $id)->first();
@@ -96,16 +96,16 @@ class Roles extends BaseController
     public function actualizar()
     {
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('roles')){
             $this->roles->update($this->request->getPost('id'),
                 ['nombre' => $this->request->getPost('nombre')]);  
 
-                return redirect()->to(base_url().'/roles')->with('exito', 'Rol actualizado exitosamente');
+                return redirect()->to(route_to('roles.inicio'))->with('exito', 'Rol actualizado exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -114,9 +114,9 @@ class Roles extends BaseController
     public function eliminar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->roles->update($id, ['activo' => 0]);
@@ -127,9 +127,9 @@ class Roles extends BaseController
     public function reingresar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $this->roles->update($id, ['activo' => 1]);

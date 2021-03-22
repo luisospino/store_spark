@@ -16,7 +16,7 @@
             }
             ?>
 
-            <form method = "POST" action="<?= base_url(); ?>/metodos_pagos/insertar" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('metodos_pagos.insertar') ?>" autocomplete = "off">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-12 col-sm-6">
@@ -26,7 +26,7 @@
                         </div>
                     </div>    
                 </div>
-                <a href="<?= base_url();?>/metodos_pagos" class = "btn btn-primary">Regresar</a>   
+                <a href="<?= route_to('metodos_pagos.inicio') ?>" class = "btn btn-primary">Regresar</a>   
                 <button type="submit" class = "btn btn-success">Guardar</button>
             </form>
 

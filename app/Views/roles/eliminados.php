@@ -14,7 +14,7 @@
 
             <div>
                 <p>
-                    <a href="<?= base_url() ?>/roles" class = "btn btn-sm btn-warning">Roles</a>
+                    <a href="<?= route_to('roles.inicio') ?>" class = "btn btn-sm btn-warning">Roles</a>
                 </p>
             </div>
 
@@ -34,7 +34,7 @@
                                 <td><?= $dato['nombre'] ?></td>
 
                                 <td class = "text-center">
-                                    <a href="#" data-href = "<?= base_url().'/roles/reingresar/'. $dato['id'] ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Reingresar registro" class = "btn btn-sm btn-danger">
+                                    <a href="#" data-href = "<?= route_to('roles.reingresar', $dato['id']) ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Reingresar registro" class = "btn btn-sm btn-danger">
                                         <i class = "fas fa-arrow-alt-circle-up"></i>
                                     </a>
                                 </td>

@@ -14,8 +14,8 @@
 
             <div>
                 <p>
-                    <a href="<?= base_url() ?>/roles/nuevo" class = "btn btn-sm btn-info">Agregar</a>
-                    <a href="<?= base_url() ?>/roles/eliminados" class = "btn btn-sm btn-warning">Eliminados</a>
+                    <a href="<?= route_to('roles.crear') ?>" class = "btn btn-sm btn-info">Agregar</a>
+                    <a href="<?= route_to('roles.eliminados') ?>" class = "btn btn-sm btn-warning">Eliminados</a>
                 </p>
             </div>
 
@@ -35,10 +35,10 @@
                                     <td><?= $dato['nombre'] ?></td>
 
                                     <td class = "text-center">
-                                        <a href="<?= base_url().'/roles/editar/'. $dato['id'] ?>" class = "btn btn-sm btn-secondary">
+                                        <a href="<?= route_to('roles.editar', $dato['id']) ?>" class = "btn btn-sm btn-secondary">
                                             <i class = "fas fa-pencil-alt"></i>
                                         </a>
-                                        <a href="#" data-href = "<?= base_url().'/roles/eliminar/'. $dato['id'] ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Eliminar registro" class = "btn btn-sm btn-danger">
+                                        <a href="#" data-href = "<?= route_to('roles.eliminar', $dato['id']) ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Eliminar registro" class = "btn btn-sm btn-danger">
                                             <i class = "fas fa-trash"></i>
                                         </a>
                                     </td>

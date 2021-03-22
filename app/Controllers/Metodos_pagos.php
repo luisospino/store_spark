@@ -19,23 +19,23 @@ class Metodos_pagos extends BaseController
     public function index($activo = 1)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $metodos_pagos = $this->metodos_pagos->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Métodos de pagos', 'datos' => $metodos_pagos];
         
-        return view('header').view('metodos_pagos/metodos', $array).view('footer');
+        return view('header').view('metodos_pagos/inicio', $array).view('footer');
     }
 
     public function eliminados($activo = 0)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $metodos_pagos = $this->metodos_pagos->where('activo', $activo)->findAll();
@@ -44,34 +44,34 @@ class Metodos_pagos extends BaseController
         return view('header').view('metodos_pagos/eliminados', $array).view('footer');
     }
     
-    public function nuevo()
+    public function crear()
     {   
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $array = ['titulo' => 'Agregar método', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('metodos_pagos/nuevo', $array).view('footer');
+        return view('header').view('metodos_pagos/crear', $array).view('footer');
     }
 
     public function insertar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('metodos_pagos')){
 
             $this->metodos_pagos->save(['nombre' => $this->request->getPost('nombre')]);
     
-            return redirect()->to(base_url().'/metodos_pagos')->with('exito', 'Método de pago creado exitosamente');
+            return redirect()->to(route_to('metodos_pagos.inicio'))->with('exito', 'Método de pago creado exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -82,9 +82,9 @@ class Metodos_pagos extends BaseController
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $metodo_pago = $this->metodos_pagos->where('id', $id)->first();
@@ -96,16 +96,16 @@ class Metodos_pagos extends BaseController
     public function actualizar()
     {
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('metodos_pagos')){
             $this->metodos_pagos->update($this->request->getPost('id'),
                 ['nombre' => $this->request->getPost('nombre')]);  
 
-                return redirect()->to(base_url().'/metodos_pagos')->with('exito', 'Método de pago actualizado exitosamente');
+                return redirect()->to(route_to('metodos_pagos.inicio'))->with('exito', 'Método de pago actualizado exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -114,9 +114,9 @@ class Metodos_pagos extends BaseController
     public function eliminar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->metodos_pagos->update($id, ['activo' => 0]);
@@ -127,9 +127,9 @@ class Metodos_pagos extends BaseController
     public function reingresar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $this->metodos_pagos->update($id, ['activo' => 1]);

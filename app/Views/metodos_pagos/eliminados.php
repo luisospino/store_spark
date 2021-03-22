@@ -14,7 +14,7 @@
 
             <div>
                 <p>
-                    <a href="<?= base_url() ?>/metodos_pagos" class = "btn btn-sm btn-warning">Métodos de pago</a>
+                    <a href="<?= route_to('metodos_pagos.inicio') ?>" class = "btn btn-sm btn-warning">Métodos de pago</a>
                 </p>
             </div>
 
@@ -34,7 +34,7 @@
                                 <td><?= $dato['nombre'] ?></td>
 
                                 <td class = "text-center">
-                                    <a href="#" data-href = "<?= base_url().'/metodos_pagos/reingresar/'. $dato['id'] ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Reingresar registro" class = "btn btn-sm btn-danger">
+                                    <a href="#" data-href = "<?= route_to('metodos_pagos.reingresar', $dato['id']) ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Reingresar registro" class = "btn btn-sm btn-danger">
                                         <i class = "fas fa-arrow-alt-circle-up"></i>
                                     </a>
                                 </td>

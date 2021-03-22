@@ -26,7 +26,7 @@
             <?php }?>
 
 
-            <form method = "POST" enctype = "multipart/form-data" action="<?php echo base_url(); ?>/configuracion/actualizar" autocomplete = "off">
+            <form method = "POST" enctype = "multipart/form-data" action="<?= route_to('configuracion.actualizar') ?>" autocomplete = "off">
                 <input type="hidden" value= <?= $configuracion['id'] ?>>
                 
                 <div class="form-group">
@@ -81,7 +81,7 @@
                     <div class="row">
                         <div class="col-12 col-sm-6">
                             <label>Logotipo:</label>
-                            <img src = "<?=base_url()?>/img/logo.png" class = "img-responsive" width = "80">
+                            <img src = "<?= base_url() ?>/img/logo.png" class = "img-responsive" width = "80">
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
 
-                <a href="<?= base_url();?>" class = "btn btn-sm btn-primary">Regresar</a>   
+                <a href="<?= route_to('productos.inicio') ?>" class = "btn btn-sm btn-primary">Regresar</a>   
                 <button type="submit" class = "btn btn-sm btn-success">Guardar</button>
             </form>              
         </div>

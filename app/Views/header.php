@@ -79,13 +79,13 @@
                         <?php } ?>
 
                         <?php if(session()->get('rol') != 'Supervisor'){ ?>
-                            <a class="nav-link" href="<?= base_url(); ?>/ventas/nuevo">
+                            <a class="nav-link" href="<?= route_to('ventas.crear') ?>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
                                 Caja
                             </a>
                         <?php } ?>
 
-                        <a class="nav-link" href="<?= base_url(); ?>/ventas">
+                        <a class="nav-link" href="<?= route_to('ventas.inicio') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-fw fa-shopping-cart"></i></div>
                             Ventas
                         </a>

@@ -21,24 +21,24 @@ class Configuracion extends BaseController
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $configuracion = $this->configuracion->first();
 
         $array = ['titulo' => 'Configuración de la tienda', 'configuracion' => $configuracion, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('configuracion/configuracion', $array).view('footer');
+        return view('header').view('configuracion/inicio', $array).view('footer');
     }
 
     public function actualizar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         if($this->validate('configuracion')){
@@ -57,8 +57,7 @@ class Configuracion extends BaseController
             }
 
             $imagen = $this->request->getFile('logo');
-            $imagen->move('./img', 'logo.png'); 
-            //return redirect()->to(base_url().'/configuracion');
+            $imagen->move(ROOTPATH.'/public/img', 'logo.png');
             return redirect()->back()->with('exito', 'Configuracion guardada exitosamente');
         }
 

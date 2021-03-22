@@ -1,11 +1,11 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
-            <h2 class="mt-4"> <?php echo $titulo ?> </h2>
+            <h2 class="mt-4"> <?= $titulo ?> </h2>
 
             <div id = "message"></div>
 
-            <form method = "POST" action="<?php echo base_url(); ?>/compras/insertar" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('compras.insertar') ?>" autocomplete = "off">
                 <div class="form-group">
                     <div class="row">
 

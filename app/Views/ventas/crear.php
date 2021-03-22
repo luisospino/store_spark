@@ -4,7 +4,7 @@
 
             <div id = "message_venta"></div>
 
-            <form  method = "POST" action="<?= base_url(); ?>/ventas/insertar" autocomplete = "off">
+            <form  method = "POST" action="<?= route_to('ventas.insertar') ?>" autocomplete = "off">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-12 col-sm-4">

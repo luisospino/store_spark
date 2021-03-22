@@ -16,7 +16,7 @@
             }
             ?>
 
-            <form method = "POST" action="<?= base_url(); ?>/metodos_pagos/actualizar" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('metodos_pagos.actualizar') ?>" autocomplete = "off">
 
                 <input type="hidden" name = "id" value = "<?= $metodo_pago['id'] ?>">
                 <div class="form-group">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="<?= base_url();?>/metodos_pagos" class = "btn btn-primary">Regresar</a>   
+                <a href="<?= route_to('metodos_pagos.inicio') ?>" class = "btn btn-primary">Regresar</a>   
                 <button type="submit" class = "btn btn-success">Guardar</button>
             </form>
 

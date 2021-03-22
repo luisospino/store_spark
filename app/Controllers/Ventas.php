@@ -31,7 +31,7 @@ class Ventas extends BaseController
     public function index($activo = 1)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
 
         $ventas = $this->db->table('ventas')
@@ -43,28 +43,28 @@ class Ventas extends BaseController
 
         $array = ['titulo' => 'Ventas', 'datos' => $ventas->getResultArray()];
 
-        return view('header').view('ventas/ventas', $array).view('footer');
+        return view('header').view('ventas/inicio', $array).view('footer');
     }
 
-    public function nuevo()
+    public function crear()
     {   
         session();    
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Supervisor'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $metodos_pagos = $this->metodos_pagos->where('activo', 1)->findAll();
         $array = ['metodos_pagos' => $metodos_pagos];
-        return view('header').view('ventas/nuevo', $array).view('footer');
+        return view('header').view('ventas/crear', $array).view('footer');
     }
 
     public function canceladas($activo = 0)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
 
         $ventas = $this->db->table('ventas')
@@ -82,9 +82,9 @@ class Ventas extends BaseController
     public function cancelar($id)
     {
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->db->transStart();
@@ -114,9 +114,9 @@ class Ventas extends BaseController
     public function completarVenta(){
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Supervisor'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->db->transStart();
@@ -157,7 +157,7 @@ class Ventas extends BaseController
     public function verVentaPdf($id_venta){
         
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
 
         $array = ['id_venta' => $id_venta];
@@ -166,7 +166,7 @@ class Ventas extends BaseController
 
     public function generarVentaPdf($id_venta){
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
 
         $tienda_config = $this->configuracion->select('nombre, direccion, leyenda')->first();

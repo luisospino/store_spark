@@ -16,7 +16,7 @@
             }
             ?>
 
-            <form method = "POST" action="<?= base_url(); ?>/roles/actualizar" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('roles.actualizar'); ?>" autocomplete = "off">
 
                 <input type="hidden" name = "id" value = "<?= $rol['id'] ?>">
                 <div class="form-group">
@@ -28,7 +28,7 @@
                         </div>
                     </div>    
                 </div>
-                <a href="<?= base_url();?>/roles" class = "btn btn-primary">Regresar</a>   
+                <a href="<?= route_to('roles.inicio');?>" class = "btn btn-primary">Regresar</a>   
                 <button type="submit" class = "btn btn-success">Guardar</button>
             </form>
 

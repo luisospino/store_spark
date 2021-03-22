@@ -89,7 +89,7 @@ $routes->group('clientes', function($routes){//RUTAS DE CLIENTES
 	$routes->get('eliminados', 'Clientes::eliminados', ['as' => 'clientes.eliminados']);
 	$routes->get('reingresar/(:num)', 'Clientes::reingresar/$1', ['as' => 'clientes.reingresar']);
 
-	$routes->get('obtenerClientes/(:num)', 'Clientes::obtenerClientes/$1', ['as' => 'categorias.obtenerClientes']);
+	$routes->get('obtenerClientes/(:alpha)', 'Clientes::obtenerClientes/$1', ['as' => 'clientes.obtenerClientes']);
 });
 
 $routes->group('compras', function($routes){//RUTAS DE COMPRAS
@@ -105,6 +105,51 @@ $routes->group('compras', function($routes){//RUTAS DE COMPRAS
 
 	$routes->get('verCompraPdf/(:num)', 'Compras::verCompraPdf/$1', ['as' => 'compras.verCompra']);
 	$routes->get('generarCompraPdf/(:num)', 'Compras::generarCompraPdf/$1', ['as' => 'compras.generarCompra']);
+});
+
+$routes->group('ventas', function($routes){//RUTAS DE VENTAS
+	
+    $routes->get('', 'Ventas::index', ['as' => 'ventas.inicio']);
+	$routes->get('crear', 'Ventas::crear', ['as' => 'ventas.crear']);
+	$routes->post('completarVenta', 'Ventas::completarVenta', ['as' => 'ventas.completarVenta']);
+	$routes->get('editar/(:num)', 'Ventas::editar/$1', ['as' => 'ventas.editar']);
+	$routes->post('actualizar', 'Ventas::actualizar', ['as' => 'ventas.actualizar']);
+	$routes->get('cancelar/(:num)', 'Ventas::cancelar/$1', ['as' => 'ventas.cancelar']);
+	$routes->get('canceladas', 'Ventas::canceladas', ['as' => 'ventas.canceladas']);
+	$routes->get('reingresar/(:num)', 'Ventas::reingresar/$1', ['as' => 'ventas.reingresar']);
+
+	$routes->get('verVentaPdf/(:num)', 'Ventas::verVentaPdf/$1', ['as' => 'ventas.verVenta']);
+	$routes->get('generarVentaPdf/(:num)', 'Ventas::generarVentaPdf/$1', ['as' => 'ventas.generarVenta']);
+});
+
+$routes->group('configuracion', function($routes){//RUTAS DE CONFIGURACION
+	
+    $routes->get('', 'Configuracion::index', ['as' => 'configuracion.inicio']);
+	$routes->post('actualizar', 'Configuracion::actualizar', ['as' => 'configuracion.actualizar']);
+});
+
+$routes->group('metodos_pagos', function($routes){//RUTAS DE METODOS DE PAGO
+	
+    $routes->get('', 'Metodos_pagos::index', ['as' => 'metodos_pagos.inicio']);
+	$routes->get('crear', 'Metodos_pagos::crear', ['as' => 'metodos_pagos.crear']);
+	$routes->post('insertar', 'Metodos_pagos::insertar', ['as' => 'metodos_pagos.insertar']);
+	$routes->get('editar/(:num)', 'Metodos_pagos::editar/$1', ['as' => 'metodos_pagos.editar']);
+	$routes->post('actualizar', 'Metodos_pagos::actualizar', ['as' => 'metodos_pagos.actualizar']);
+	$routes->get('eliminar/(:num)', 'Metodos_pagos::eliminar/$1', ['as' => 'metodos_pagos.eliminar']);
+	$routes->get('eliminados', 'Metodos_pagos::eliminados', ['as' => 'metodos_pagos.eliminados']);
+	$routes->get('reingresar/(:num)', 'Metodos_pagos::reingresar/$1', ['as' => 'metodos_pagos.reingresar']);	
+});
+
+$routes->group('roles', function($routes){//RUTAS DE ROLES
+	
+    $routes->get('', 'Roles::index', ['as' => 'roles.inicio']);
+	$routes->get('crear', 'Roles::crear', ['as' => 'roles.crear']);
+	$routes->post('insertar', 'Roles::insertar', ['as' => 'roles.insertar']);
+	$routes->get('editar/(:num)', 'Roles::editar/$1', ['as' => 'roles.editar']);
+	$routes->post('actualizar', 'Roles::actualizar', ['as' => 'roles.actualizar']);
+	$routes->get('eliminar/(:num)', 'Roles::eliminar/$1', ['as' => 'roles.eliminar']);
+	$routes->get('eliminados', 'Roles::eliminados', ['as' => 'roles.eliminados']);
+	$routes->get('reingresar/(:num)', 'Roles::reingresar/$1', ['as' => 'roles.reingresar']);	
 });
 
 /*
