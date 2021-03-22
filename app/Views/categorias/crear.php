@@ -16,7 +16,7 @@
             }
             ?>
 
-            <form method = "POST" action="<?= base_url(); ?>/categorias/insertar" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('categorias.insertar') ?>" autocomplete = "off">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-12 col-sm-6">
@@ -27,7 +27,7 @@
                     </div>    
                 </div>
 
-                <a href="<?= base_url();?>/categorias" class = "btn btn-sm btn-primary">Regresar</a>   
+                <a href="<?= route_to('categorias.inicio') ?>" class = "btn btn-sm btn-primary">Regresar</a>   
                 <button type="submit" class = "btn btn-sm btn-success">Guardar</button>
             </form>
 

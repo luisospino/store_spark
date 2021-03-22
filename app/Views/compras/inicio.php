@@ -1,7 +1,7 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
-            <h2 class="mt-4"> <?php echo $titulo ?> </h2>
+            <h2 class="mt-4"> <?= $titulo ?> </h2>
 
             <?php if(session()->has('exito')){?>
                 <div class="message alert alert-success alert-dismissible fade show" role="alert">
@@ -14,7 +14,7 @@
 
             <div>
                 <p>
-                    <a href="<?php echo base_url() ?>/compras/canceladas" class = "btn btn-sm btn-warning">Canceladas</a>
+                    <a href="<?= route_to('compras.canceladas') ?>" class = "btn btn-sm btn-warning">Canceladas</a>
                 </p>
             </div>
 
@@ -38,12 +38,12 @@
                                 <td><?= session()->get('nombre') ?></td>
 
                                 <td class = "text-center">
-                                    <a href="<?= base_url().'/compras/verCompraPdf/'. $dato['id'] ?>" class = "btn btn-sm btn-secondary">
+                                    <a href="<?= route_to('compras.verCompra', $dato['id']) ?>" class = "btn btn-sm btn-secondary">
                                         <i class="fas fa-eye"></i>
                                     </a>
 
                                     <?php if(session()->get('rol') == 'Administrador'){ ?>
-                                        <a href="#" data-href = "<?= base_url().'/compras/cancelar/'. $dato['id'] ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Eliminar registro" class = "btn btn-sm btn-danger">
+                                        <a href="#" data-href = "<?= route_to('compras.cancelar', $dato['id']) ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Eliminar registro" class = "btn btn-sm btn-danger">
                                             <i class = "fas fa-trash"></i>
                                         </a>
                                     <?php } ?>

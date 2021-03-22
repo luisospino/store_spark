@@ -70,7 +70,7 @@
                             <div class="collapse" id="compras" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <?php if(session()->get('rol') == 'Administrador'){ ?>
-                                        <a class="nav-link" href="<?= base_url(); ?>/compras/nuevo">Nueva compra</a>
+                                        <a class="nav-link" href="<?= route_to('compras.crear') ?>">Nueva compra</a>
                                     <?php } ?>
 
                                     <a class="nav-link" href="<?= base_url(); ?>/compras">Compras</a>

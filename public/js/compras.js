@@ -11,7 +11,7 @@ $(document).ready(function(){
             $.ajax({
                 method: 'GET',
                 url: `http://localhost:8080/productos/obtenerProductos/${request.term}`,
-
+                
                 success: function (datos) {
                     productos_compra = JSON.parse(datos);
                     var transformacion = $.map(productos_compra, function (producto) {

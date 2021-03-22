@@ -14,7 +14,7 @@
 
             <div>
                 <p>
-                    <a href="<?= base_url() ?>/clientes" class = "btn btn-sm btn-warning">Clientes</a>
+                    <a href="<?= route_to('clientes.inicio') ?>" class = "btn btn-sm btn-warning">Clientes</a>
                 </p>
             </div>
 
@@ -45,7 +45,7 @@
 
                                 <?php if(session()->get('rol') == 'Administrador'){ ?>
                                     <td class = "text-center">
-                                        <a href="#" data-href = "<?= base_url().'/clientes/reingresar/'. $dato['id'] ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Reingresar registro" class = "btn btn-sm btn-danger">
+                                        <a href="#" data-href = "<?= route_to('clientes.reingresar', $dato['id']) ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Reingresar registro" class = "btn btn-sm btn-danger">
                                             <i class = "fas fa-arrow-alt-circle-up"></i>
                                         </a>
                                     </td>

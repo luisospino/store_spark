@@ -1,11 +1,11 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
-            <h2 class="mt-4"> <?php echo $titulo ?> </h2>
+            <h2 class="mt-4"> <?= $titulo ?> </h2>
             
             <div>
                 <p>
-                    <a href="<?php echo base_url() ?>/compras" class = "btn btn-sm btn-warning">Compras</a>
+                    <a href="<?= route_to('compras.inicio') ?>" class = "btn btn-sm btn-warning">Compras</a>
                 </p>
             </div>
 
@@ -29,7 +29,7 @@
                                 <td><?= session()->get('nombre') ?></td>
                                 
                                 <td class = "text-center">
-                                    <a href = "<?= base_url().'/compras/verCompraPdf/'. $dato['id'] ?>" class = "btn btn-sm btn-danger">
+                                    <a href = "<?= route_to('compras.verCompra', $dato['id']) ?>" class = "btn btn-sm btn-danger">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </td>

@@ -28,38 +28,38 @@ class Compras extends BaseController
     public function index($activo = 1)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $compras = $this->compras->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Compras', 'datos' => $compras];
         
-        return view('header').view('compras/compras', $array).view('footer');
+        return view('header').view('compras/inicio', $array).view('footer');
     }
 
-    public function nuevo()
+    public function crear()
     {   
         session(); 
         
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $array = ['titulo' => 'Agregar compra'];
         
-        return view('header').view('compras/nuevo', $array).view('footer');
+        return view('header').view('compras/crear', $array).view('footer');
     }
 
     public function canceladas($activo = 0)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $compras = $this->compras->where('activo', $activo)->findAll();
@@ -71,9 +71,9 @@ class Compras extends BaseController
     public function cancelar($id)
     {
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->db->transStart();
@@ -103,9 +103,9 @@ class Compras extends BaseController
     public function completarCompra(){
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->db->transStart();
@@ -143,9 +143,9 @@ class Compras extends BaseController
     public function verCompraPdf($id_compra){
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $array = ['id_compra' => $id_compra];
@@ -155,9 +155,9 @@ class Compras extends BaseController
     public function generarCompraPdf($id_compra){
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $tienda_config = $this->configuracion->select('nombre, direccion')->first();

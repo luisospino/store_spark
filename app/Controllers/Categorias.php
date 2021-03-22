@@ -19,23 +19,23 @@ class Categorias extends BaseController
     public function index($activo = 1)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('productos.login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $categorias = $this->categorias->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Categorías', 'datos' => $categorias];
         
-        return view('header').view('categorias/categorias', $array).view('footer');
+        return view('header').view('categorias/inicio', $array).view('footer');
     }
 
     public function eliminados($activo = 0)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('productos.login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $categorias = $this->categorias->where('activo', $activo)->findAll();
@@ -44,34 +44,34 @@ class Categorias extends BaseController
         return view('header').view('categorias/eliminados', $array).view('footer');
     }
     
-    public function nuevo()
+    public function crear()
     {   
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('productos.login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $array = ['titulo' => 'Agregar categoría', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('categorias/nuevo', $array).view('footer');
+        return view('header').view('categorias/crear', $array).view('footer');
     }
 
     public function insertar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('productos.login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('categorias')){
 
             $this->categorias->save(['nombre' => $this->request->getPost('nombre')]);
     
-            return redirect()->to(base_url().'/categorias')->with('exito', 'Categoria creada exitosamente');
+            return redirect()->to(route_to('categorias.inicio'))->with('exito', 'Categoria creada exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -82,9 +82,9 @@ class Categorias extends BaseController
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('productos.login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $categoria = $this->categorias->where('id', $id)->first();
@@ -96,16 +96,16 @@ class Categorias extends BaseController
     public function actualizar()
     {
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('productos.login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('categorias')){
             $this->categorias->update($this->request->getPost('id'),
                 ['nombre' => $this->request->getPost('nombre')]);  
 
-                return redirect()->to(base_url().'/categorias')->with('exito', 'Categoria actualizada exitosamente');
+                return redirect()->to(route_to('categorias.inicio'))->with('exito', 'Categoria actualizada exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -114,9 +114,9 @@ class Categorias extends BaseController
     public function eliminar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('productos.login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->categorias->update($id, ['activo' => 0]);
@@ -127,9 +127,9 @@ class Categorias extends BaseController
     public function reingresar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('productos.login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $this->categorias->update($id, ['activo' => 1]);

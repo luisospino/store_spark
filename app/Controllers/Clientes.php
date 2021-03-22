@@ -19,19 +19,19 @@ class Clientes extends BaseController
     public function index($activo = 1)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
 
         $clientes = $this->clientes->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Clientes', 'datos' => $clientes];
         
-        return view('header').view('clientes/clientes', $array).view('footer');
+        return view('header').view('clientes/inicio', $array).view('footer');
     }
 
     public function eliminados($activo = 0)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
 
         $clientes = $this->clientes->where('activo', $activo)->findAll();
@@ -40,27 +40,27 @@ class Clientes extends BaseController
         return view('header').view('clientes/eliminados', $array).view('footer');
     }
     
-    public function nuevo()
+    public function crear()
     {   
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $array = ['titulo' => 'Agregar cliente', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('clientes/nuevo', $array).view('footer');
+        return view('header').view('clientes/crear', $array).view('footer');
     }
 
     public function insertar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         if($this->validate('clientes')){
@@ -70,7 +70,7 @@ class Clientes extends BaseController
                 'direccion' => $this->request->getPost('direccion') == '' ? NULL: $this->request->getPost('direccion'),
                 'correo' => $this->request->getPost('correo')]);
     
-                return redirect()->to(base_url().'/clientes')->with('exito', 'Cliente creado exitosamente');
+                return redirect()->to(route_to('clientes.inicio'))->with('exito', 'Cliente creado exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -81,9 +81,9 @@ class Clientes extends BaseController
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $cliente = $this->clientes->where('id', $id)->first();
@@ -95,9 +95,9 @@ class Clientes extends BaseController
     public function actualizar()
     {
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('clientes')){
@@ -107,7 +107,7 @@ class Clientes extends BaseController
                 'direccion' => $this->request->getPost('direccion') == '' ? NULL: $this->request->getPost('direccion'),
                 'correo' => $this->request->getPost('correo')]);  
 
-                return redirect()->to(base_url().'/clientes')->with('exito', 'Cliente actualizado exitosamente');
+                return redirect()->to(route_to('clientes.inicio'))->with('exito', 'Cliente actualizado exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -116,9 +116,9 @@ class Clientes extends BaseController
     public function eliminar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->clientes->update($id, ['activo' => 0]);
@@ -129,9 +129,9 @@ class Clientes extends BaseController
     public function reingresar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->clientes->update($id, ['activo' => 1]);
@@ -142,9 +142,9 @@ class Clientes extends BaseController
     public function obtenerClientes($search)
     {
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Supervisor'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $clientes = $this->clientes->like('nombre',$search)->where('activo', 1)->findAll();

@@ -16,7 +16,7 @@
             }
             ?>
 
-            <form method = "POST" action="<?= base_url(); ?>/clientes/actualizar" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('clientes.actualizar') ?>" autocomplete = "off">
 
                 <input type="hidden" name = "id" value = "<?= $cliente['id'] ?>">
                 <div class="form-group">
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="text-center">
-                    <a href="<?= base_url();?>/clientes" class = "btn btn-sm btn-primary">Regresar</a>   
+                    <a href="<?= route_to('clientes.inicio') ?>" class = "btn btn-sm btn-primary">Regresar</a>   
                     <button type="submit" class = "btn btn-sm btn-success">Guardar</button>
                 </div>
             </form>

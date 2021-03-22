@@ -16,7 +16,7 @@
             }
             ?>
 
-            <form method = "POST" action="<?= base_url(); ?>/categorias/actualizar" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('categorias.actualizar')?> " autocomplete = "off">
 
                 <input type="hidden" name = "id" value = "<?= $categoria['id'] ?>">
                 <div class="form-group">
@@ -28,7 +28,7 @@
                         </div>
                     </div>    
                 </div>
-                <a href="<?= base_url();?>/categorias" class = "btn btn-sm btn-primary">Regresar</a>   
+                <a href="<?= route_to('categorias.inicio') ?>" class = "btn btn-sm btn-primary">Regresar</a>   
                 <button type="submit" class = "btn btn-sm btn-success">Guardar</button>
             </form>
 
