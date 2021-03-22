@@ -1,7 +1,7 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
-            <h2 class="mt-4"> <?php echo $titulo ?> </h2>
+            <h2 class="mt-4"> <?= $titulo ?> </h2>
             
             <?php if(session()->has('exito')){?>
                 <div class="message alert alert-success alert-dismissible fade show" role="alert">
@@ -15,9 +15,9 @@
             <div>
                 <p>
                     <?php if(session()->get('rol') == 'Administrador'){ ?>
-                        <a href="<?php echo base_url() ?>/unidades/nuevo" class = "btn btn-sm btn-info">Agregar</a>
+                        <a href="<?= route_to('unidades.crear') ?>" class = "btn btn-sm btn-info">Agregar</a>
                     <?php } ?>
-                    <a href="<?php echo base_url() ?>/unidades/eliminados" class = "btn btn-sm btn-warning">Eliminadas</a>
+                    <a href="<?= route_to('unidades.eliminados') ?>" class = "btn btn-sm btn-warning">Eliminadas</a>
                 </p>
             </div>
 
@@ -36,16 +36,16 @@
                     <tbody>
                             <?php foreach($datos as $dato){ ?>
                                 <tr>
-                                    <td><?php echo $dato['id'] ?></td>
-                                    <td><?php echo $dato['nombre'] ?></td>
-                                    <td><?php echo $dato['nombre_corto'] ?></td>
+                                    <td><?= $dato['id'] ?></td>
+                                    <td><?= $dato['nombre'] ?></td>
+                                    <td><?= $dato['nombre_corto'] ?></td>
 
                                     <?php if(session()->get('rol') == 'Administrador'){ ?>
                                         <td class = "text-center">
-                                            <a href="<?php echo base_url().'/unidades/editar/'. $dato['id'] ?>" class = "btn btn-sm btn-secondary">
+                                            <a href="<?= route_to('unidades.editar', $dato['id']) ?>" class = "btn btn-sm btn-secondary">
                                                 <i class = "fas fa-pencil-alt"></i>
                                             </a>
-                                            <a href="#" data-href = "<?php echo base_url().'/unidades/eliminar/'. $dato['id'] ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Eliminar registro" class = "btn btn-sm btn-danger">
+                                            <a href="#" data-href = "<?= route_to('unidades.eliminar', $dato['id']) ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Eliminar registro" class = "btn btn-sm btn-danger">
                                                 <i class = "fas fa-trash"></i>
                                             </a>
                                         </td>

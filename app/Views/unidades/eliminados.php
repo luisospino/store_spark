@@ -1,7 +1,7 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
-            <h2 class="mt-4"> <?php echo $titulo ?> </h2>
+            <h2 class="mt-4"> <?= $titulo ?> </h2>
 
             <?php if(session()->has('exito')){?>
                 <div class="message alert alert-success alert-dismissible fade show" role="alert">
@@ -14,7 +14,7 @@
 
             <div>
                 <p>
-                    <a href="<?php echo base_url() ?>/unidades" class = "btn btn-sm btn-warning">Unidades</a>
+                    <a href="<?= route_to('unidades.inicio') ?>" class = "btn btn-sm btn-warning">Unidades</a>
                 </p>
             </div>
 
@@ -34,13 +34,13 @@
                     <tbody>
                         <?php foreach($datos as $dato){ ?>
                             <tr>
-                                <td><?php echo $dato['id'] ?></td>
-                                <td><?php echo $dato['nombre'] ?></td>
-                                <td><?php echo $dato['nombre_corto'] ?></td>
+                                <td><?= $dato['id'] ?></td>
+                                <td><?= $dato['nombre'] ?></td>
+                                <td><?= $dato['nombre_corto'] ?></td>
 
                                 <?php if(session()->get('rol') == 'Administrador'){ ?>
                                     <td class = "text-center">
-                                        <a href="#" data-href = "<?php echo base_url().'/unidades/reingresar/'. $dato['id'] ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Reingresar registro" class = "btn btn-sm btn-danger">
+                                        <a href="#" data-href = "<?= route_to('unidades.reingresar', $dato['id']) ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Reingresar registro" class = "btn btn-sm btn-danger">
                                             <i class = "fas fa-arrow-alt-circle-up"></i>
                                         </a>
                                     </td>

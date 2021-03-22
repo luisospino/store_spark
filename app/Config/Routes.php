@@ -52,6 +52,18 @@ $routes->group('productos', function($routes){//RUTAS DE PRODUCTOS
 	$routes->get('generarCodigosBarrasEliminadosPdf', 'Productos::generarCodigosBarrasEliminadosPdf', ['as' => 'productos.generarCodigosBarrasEliminados']);	
 });
 
+$routes->group('unidades', function($routes){//RUTAS DE UNIDADES
+	
+    $routes->get('', 'Unidades::index', ['as' => 'unidades.inicio']);
+	$routes->get('crear', 'Unidades::crear', ['as' => 'unidades.crear']);
+	$routes->post('insertar', 'Unidades::insertar', ['as' => 'unidades.insertar']);
+	$routes->get('editar/(:num)', 'Unidades::editar/$1', ['as' => 'unidades.editar']);
+	$routes->post('actualizar', 'Unidades::actualizar', ['as' => 'unidades.actualizar']);
+	$routes->get('eliminar/(:num)', 'Unidades::eliminar/$1', ['as' => 'unidades.eliminar']);
+	$routes->get('eliminados', 'Unidades::eliminados', ['as' => 'unidades.eliminados']);
+	$routes->get('reingresar/(:num)', 'Unidades::reingresar/$1', ['as' => 'unidades.reingresar']);	
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

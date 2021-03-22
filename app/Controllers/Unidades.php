@@ -19,23 +19,23 @@ class Unidades extends BaseController
     public function index($activo = 1)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $unidades = $this->unidades->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Unidades', 'datos' => $unidades];
         
-        return view('header').view('unidades/unidades', $array).view('footer');
+        return view('header').view('unidades/inicio', $array).view('footer');
     }
 
     public function eliminados($activo = 0)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $unidades = $this->unidades->where('activo', $activo)->findAll();
@@ -44,27 +44,27 @@ class Unidades extends BaseController
         return view('header').view('unidades/eliminados', $array).view('footer');
     }
     
-    public function nuevo()
+    public function crear()
     {   
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $array = ['titulo' => 'Agregar unidad', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('unidades/nuevo', $array).view('footer');
+        return view('header').view('unidades/crear', $array).view('footer');
     }
 
     public function insertar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('unidades')){
@@ -72,7 +72,7 @@ class Unidades extends BaseController
             $this->unidades->save(['nombre' => $this->request->getPost('nombre'),
                 'nombre_corto' => $this->request->getPost('nombre_corto')]);
     
-                return redirect()->to(base_url().'/unidades')->with('exito', 'Unidad creada exitosamente');
+                return redirect()->to(route_to('unidades.inicio'))->with('exito', 'Unidad creada exitosamente');
         }
         
         return redirect()->back()->withInput();
@@ -83,9 +83,9 @@ class Unidades extends BaseController
         session();   
         
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $unidad = $this->unidades->where('id', $id)->first();
@@ -97,9 +97,9 @@ class Unidades extends BaseController
     public function actualizar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('unidades')){
@@ -107,7 +107,7 @@ class Unidades extends BaseController
                 ['nombre' => $this->request->getPost('nombre'),
                 'nombre_corto' => $this->request->getPost('nombre_corto')]);
     
-                return redirect()->to(base_url().'/unidades')->with('exito', 'Unidad actualizada exitosamente');
+                return redirect()->to(route_to('unidades.inicio'))->with('exito', 'Unidad actualizada exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -116,9 +116,9 @@ class Unidades extends BaseController
     public function eliminar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->unidades->update($id, ['activo' => 0]);
@@ -129,9 +129,9 @@ class Unidades extends BaseController
     public function reingresar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $this->unidades->update($id, ['activo' => 1]);
