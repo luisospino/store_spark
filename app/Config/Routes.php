@@ -181,18 +181,6 @@ $routes->group('cajas', function($routes){//RUTAS DE CAJAS
 	$routes->get('reingresar/(:num)', 'Cajas::reingresar/$1', ['as' => 'cajas.reingresar']);
 });
 
-$routes->group('cajas', function($routes){//RUTAS DE CAJAS
-	
-    $routes->get('', 'Cajas::index', ['as' => 'cajas.inicio']);
-	$routes->get('crear', 'Cajas::crear', ['as' => 'cajas.crear']);
-	$routes->post('insertar', 'Cajas::insertar', ['as' => 'cajas.insertar']);
-	$routes->get('editar/(:num)', 'Cajas::editar/$1', ['as' => 'cajas.editar']);
-	$routes->post('actualizar', 'Cajas::actualizar', ['as' => 'cajas.actualizar']);
-	$routes->get('eliminar/(:num)', 'Cajas::eliminar/$1', ['as' => 'cajas.eliminar']);
-	$routes->get('eliminados', 'Cajas::eliminados', ['as' => 'cajas.eliminados']);
-	$routes->get('reingresar/(:num)', 'Cajas::reingresar/$1', ['as' => 'cajas.reingresar']);
-});
-
 $routes->get('logs', 'Logs::index', ['as' => 'logs.inicio']);//RUTA DE LOGS DE ACCESO
 
 
