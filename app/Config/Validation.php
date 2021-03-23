@@ -99,8 +99,7 @@ class Validation
 
 	public $cajas = [
 		'numero' => 'required|is_natural|exact_length[3]|is_unique[cajas.numero,id,{id}]',
-		'nombre' => 'required|alpha_numeric_space|min_length[3]|max_length[10]|is_unique[cajas.nombre,id,{id}]',
-		'folio' => 'required|is_natural|exact_length[3]|is_unique[cajas.folio,id,{id}]'
+		'nombre' => 'required|alpha_numeric_space|min_length[3]|max_length[10]|is_unique[cajas.nombre,id,{id}]'
 	];
 
 	public $login = [
@@ -328,12 +327,6 @@ class Validation
 			'min_length' => 'El campo \'Nombre\' debe tener al menos 3 caracteres de longitud.',
 			'max_length' => 'El campo \'Nombre\' no puede exceder los 10 caracteres de longitud.',
 			'is_unique' => 'El Nombre \'{value}\' ya está en uso.'
-		],
-		'folio' => [
-			'required' => 'El campo \'Folio\' es obligatorio.',
-			'is_natural' => 'El campo \'Folio\' solo debe contener dígitos.',
-			'exact_length' => 'El campo \'Folio\' debe tener exactamente 3 caracteres de longitud.',
-			'is_unique' => 'El Folio \'{value}\' ya está en uso.'
 		],
 	];
 
