@@ -132,7 +132,7 @@ class Usuarios extends BaseController
             return redirect()->to(route_to('productos.inicio'));
         }
 
-        if($this->validate('usuarios')){
+        if($this->validate('usuarios_editar')){
             $this->usuarios->update($this->request->getPost('id'),
                 ['nombre' => $this->request->getPost('nombre'),
                 'usuario' => $this->request->getPost('usuario'),

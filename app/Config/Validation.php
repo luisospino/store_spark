@@ -86,6 +86,13 @@ class Validation
 		'clave_confirmacion' => 'required|matches[clave]|min_length[5]|max_length[40]'
 	];
 
+	public $usuarios_editar = [
+		'nombre' => 'required|alpha_space|min_length[3]|max_length[40]',
+		'usuario' => 'required|alpha_numeric_space|min_length[3]|max_length[40]|is_unique[usuarios.usuario,id,{id}]',
+		'id_rol' => 'required|is_natural_no_zero',
+		'id_caja' => 'required|is_natural_no_zero'
+	];
+
 	public $roles = [
 		'nombre' => 'required|alpha|min_length[3]|max_length[30]|is_unique[roles.nombre,id,{id}]'
 	];
@@ -271,6 +278,30 @@ class Validation
 			'matches' => 'Las contraseñas no coinciden.',
 			'min_length' => 'El campo \'Confirmación\' debe tener al menos 5 caracteres de longitud.',
 			'max_length' => 'El campo \'Confirmación\' no puede exceder los 40 caracteres de longitud.'
+		],
+	];
+
+	public $usuarios_editar_errors = [
+		'nombre' => [
+			'required' => 'El campo \'Nombre\' es obligatorio.',
+			'alpha_space' => 'El campo \'Nombre\' solo puede contener caracteres alfanuméricos y espacios.',
+			'min_length' => 'El campo \'Nombre\' debe tener al menos 3 caracteres de longitud.',
+			'max_length' => 'El campo \'Nombre\' no puede exceder los 40 caracteres de longitud.'
+		],
+		'usuario' => [
+			'required' => 'El campo \'Nombre de usuario\' es obligatorio.',
+			'alpha_numeric_space' => 'El campo \'Usuario\' solo puede contener caracteres alfanuméricos y espacios.',
+			'min_length' => 'El campo \'Usuario\' debe tener al menos 3 caracteres de longitud.',
+			'max_length' => 'El campo \'Usuario\' no puede exceder los 40 caracteres de longitud.',
+			'is_unique' => 'El nombre de usuario \'{value}\' ya está en uso.'
+		],
+		'id_rol' => [
+			'required' => 'Debe seleccionar un rol',
+			'is_natural_no_zero' => 'El campo \'Rol\' solo debe contener dígitos y debe ser mayor que cero.',
+		],
+		'id_caja' => [
+			'required' => 'Debe seleccionar una caja',
+			'is_natural_no_zero' => 'El campo \'Caja\' solo debe contener dígitos y debe ser mayor que cero.',
 		],
 	];
 
