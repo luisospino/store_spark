@@ -32,6 +32,6 @@ class logs extends BaseController
 
         $array = ['titulo' => 'Logs de acceso', 'datos' => $logs->getResultArray()];
         
-        return view('header').view('logs/logs', $array).view('footer');
+        return view('header').view('logs/inicio', $array).view('footer');
     }
 }

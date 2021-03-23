@@ -25,7 +25,7 @@
                 </div>
             <?php }?>
 
-            <form method = "POST" action="<?= base_url(); ?>/usuarios/actualizar_contrasenha" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('usuarios.actualizar_contrasenha') ?>" autocomplete = "off">
                 
                 <div class="form-group">
                     <div class="row">
@@ -53,7 +53,7 @@
                     </div>    
                 </div>
 
-                <a href="<?= base_url();?>/configuracion" class = "btn btn-primary">Regresar</a>   
+                <a href="<?= route_to('configuracion.inicio') ?>" class = "btn btn-primary">Regresar</a>   
                 <button type="submit" class = "btn btn-success">Guardar</button>
             </form>
 

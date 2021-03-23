@@ -19,23 +19,23 @@ class Cajas extends BaseController
     public function index($activo = 1)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $cajas = $this->cajas->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Cajas', 'datos' => $cajas];
         
-        return view('header').view('cajas/cajas', $array).view('footer');
+        return view('header').view('cajas/inicio', $array).view('footer');
     }
 
     public function eliminados($activo = 0)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $cajas = $this->cajas->where('activo', $activo)->findAll();
@@ -44,36 +44,35 @@ class Cajas extends BaseController
         return view('header').view('cajas/eliminados', $array).view('footer');
     }
     
-    public function nuevo()
+    public function crear()
     {   
         session();   
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $array = ['titulo' => 'Agregar caja', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('cajas/nuevo', $array).view('footer');
+        return view('header').view('cajas/crear', $array).view('footer');
     }
 
     public function insertar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('cajas')){
 
             $this->cajas->save(['numero' => $this->request->getPost('numero'),
-                'nombre' => $this->request->getPost('nombre'),
-                'folio' => $this->request->getPost('folio')]);
+                'nombre' => $this->request->getPost('nombre')]);
     
-                return redirect()->to(base_url().'/cajas')->with('exito', 'Caja creada exitosamente');
+                return redirect()->to(route_to('cajas.inicio'))->with('exito', 'Caja creada exitosamente');
         }
         
         return redirect()->back()->withInput();
@@ -84,9 +83,9 @@ class Cajas extends BaseController
         session();  
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $caja = $this->cajas->where('id', $id)->first();
@@ -98,18 +97,17 @@ class Cajas extends BaseController
     public function actualizar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('cajas')){
             $this->cajas->update($this->request->getPost('id'),
                 ['numero' => $this->request->getPost('numero'),
-                'nombre' => $this->request->getPost('nombre'),
-                'folio' => $this->request->getPost('folio')]);
+                'nombre' => $this->request->getPost('nombre')]);
     
-                return redirect()->to(base_url().'/cajas')->with('exito', 'Caja actualizada exitosamente');
+                return redirect()->to(route_to('cajas.inicio'))->with('exito', 'Caja actualizada exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -118,9 +116,9 @@ class Cajas extends BaseController
     public function eliminar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->cajas->update($id, ['activo' => 0]);
@@ -131,9 +129,9 @@ class Cajas extends BaseController
     public function reingresar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $this->cajas->update($id, ['activo' => 1]);

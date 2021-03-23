@@ -15,9 +15,9 @@
             <div>
                 <p>
                     <?php if(session()->get('rol') == 'Administrador'){ ?>
-                        <a href="<?= base_url() ?>/usuarios/nuevo" class = "btn btn-sm btn-info">Agregar</a>
+                        <a href="<?= route_to('usuarios.crear') ?>" class = "btn btn-sm btn-info">Agregar</a>
                     <?php } ?>
-                    <a href="<?= base_url() ?>/usuarios/eliminados" class = "btn btn-sm btn-warning">Eliminados</a>
+                    <a href="<?= route_to('usuarios.eliminados') ?>" class = "btn btn-sm btn-warning">Eliminados</a>
                 </p>
             </div>
 
@@ -48,10 +48,10 @@
 
                                     <?php if(session()->get('rol') == 'Administrador'){ ?>
                                         <td class = "text-center">
-                                            <a href="<?= base_url().'/usuarios/editar/'. $dato['id'] ?>" class = "btn btn-sm btn-secondary">
+                                            <a href="<?= route_to('usuarios.editar', $dato['id']) ?>" class = "btn btn-sm btn-secondary">
                                                 <i class = "fas fa-pencil-alt"></i>
                                             </a>
-                                            <a href="#" data-href = "<?= base_url().'/usuarios/eliminar/'. $dato['id'] ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Eliminar registro" class = "btn btn-sm btn-danger">
+                                            <a href="#" data-href = "<?= route_to('usuarios.eliminar', $dato['id']) ?>" data-toggle = "modal" data-target = "#modal-confirma" data-placement = "top" title = "Eliminar registro" class = "btn btn-sm btn-danger">
                                                 <i class = "fas fa-trash"></i>
                                             </a>
                                         </td>

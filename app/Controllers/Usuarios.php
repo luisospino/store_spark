@@ -28,9 +28,9 @@ class Usuarios extends BaseController
     public function index($activo = 1)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $usuarios = $this->db->table('usuarios')
@@ -42,15 +42,15 @@ class Usuarios extends BaseController
                     
         $array = ['titulo' => 'Usuarios', 'datos' => $usuarios->getResultArray()];
         
-        return view('header').view('usuarios/usuarios', $array).view('footer');
+        return view('header').view('usuarios/inicio', $array).view('footer');
     }
 
     public function eliminados($activo = 0)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $usuarios = $this->db->table('usuarios')
@@ -65,14 +65,14 @@ class Usuarios extends BaseController
         return view('header').view('usuarios/eliminados', $array).view('footer');
     }
     
-    public function nuevo()
+    public function crear()
     {   
         session();   
         
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $roles = $this->roles->where('activo', 1)->findAll();
@@ -80,15 +80,15 @@ class Usuarios extends BaseController
 
         $array = ['titulo' => 'Agregar usuario', 'roles' => $roles, 'cajas' => $cajas, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('usuarios/nuevo', $array).view('footer');
+        return view('header').view('usuarios/crear', $array).view('footer');
     }
 
     public function insertar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('usuarios')){
@@ -99,7 +99,7 @@ class Usuarios extends BaseController
                 'id_caja' => $this->request->getPost('id_caja'),
                 'clave' => password_hash($this->request->getPost('clave'), PASSWORD_BCRYPT)]);
     
-                return redirect()->to(base_url().'/usuarios')->with('exito', 'Usuario creado exitosamente');
+                return redirect()->to(route_to('usuarios.inicio'))->with('exito', 'Usuario creado exitosamente');
         }
         
         return redirect()->back()->withInput();
@@ -110,9 +110,9 @@ class Usuarios extends BaseController
         session();   
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $roles = $this->roles->where('activo', 1)->findAll();
@@ -127,9 +127,9 @@ class Usuarios extends BaseController
     public function actualizar()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('usuarios')){
@@ -139,7 +139,7 @@ class Usuarios extends BaseController
                 'id_rol' => $this->request->getPost('id_rol'),
                 'id_caja' => $this->request->getPost('id_caja')]);
     
-                return redirect()->to(base_url().'/usuarios')->with('exito', 'Usuario actualizado exitosamente');
+                return redirect()->to(route_to('usuarios.inicio'))->with('exito', 'Usuario actualizado exitosamente');
         }
 
         return redirect()->back()->withInput();
@@ -148,9 +148,9 @@ class Usuarios extends BaseController
     public function eliminar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->usuarios->update($id, ['activo' => 0]);
@@ -161,9 +161,9 @@ class Usuarios extends BaseController
     public function reingresar($id)
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }else if(session()->get('rol') != 'Administrador'){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         $this->usuarios->update($id, ['activo' => 1]);
@@ -176,7 +176,7 @@ class Usuarios extends BaseController
         session();
 
         if(session()->has('rol')){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
         
         $array = ['validaciones' => $this->validation->listErrors()];        
@@ -186,7 +186,7 @@ class Usuarios extends BaseController
     public function validar()
     {   
         if(session()->has('rol')){
-            return redirect()->to(base_url().'/productos');
+            return redirect()->to(route_to('productos.inicio'));
         }
 
         if($this->validate('login')){
@@ -222,7 +222,7 @@ class Usuarios extends BaseController
 
                     session()->set($datos_sesion);
 
-                    return redirect()->to(base_url().'/productos');
+                    return redirect()->to(route_to('productos.inicio'));
                 }else{
                     return redirect()->back()->with('error', 'Contraseña incorrecta');
                 }
@@ -236,7 +236,7 @@ class Usuarios extends BaseController
     public function logout()
     {
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
 
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -250,7 +250,7 @@ class Usuarios extends BaseController
         ]);
 
         session()->destroy();       
-        return redirect()->to(base_url());
+        return redirect()->to(route_to('login'));
     }
 
     public function editar_contrasenha()
@@ -258,7 +258,7 @@ class Usuarios extends BaseController
         session();
 
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
         
         $array = ['titulo' => 'Actualizar contraseña', 'validaciones' => $this->validation->listErrors()];
@@ -268,7 +268,7 @@ class Usuarios extends BaseController
     public function actualizar_contrasenha()
     {   
         if(!session()->has('rol')){
-            return redirect()->to(base_url());
+            return redirect()->to(route_to('login'));
         }
 
         if($this->validate('contrasenha')){
@@ -281,7 +281,7 @@ class Usuarios extends BaseController
                     $this->usuarios->update(session()->get('id_usuario'),
                         ['clave' => password_hash($this->request->getPost('clave_nueva'), PASSWORD_BCRYPT)]);
                     
-                    return redirect()->to(base_url().'/configuracion')->with('exito', 'La contraseña fué actualizada exitosamente');;
+                    return redirect()->to(route_to('configuracion.inicio'))->with('exito', 'La contraseña fué actualizada exitosamente');;
                 }else{
                     return redirect()->back()->with('error', 'La contraseña actual debe ser diferente a la nueva');
                 }

@@ -152,6 +152,47 @@ $routes->group('roles', function($routes){//RUTAS DE ROLES
 	$routes->get('reingresar/(:num)', 'Roles::reingresar/$1', ['as' => 'roles.reingresar']);	
 });
 
+$routes->group('usuarios', function($routes){//RUTAS DE USUARIOS
+	
+    $routes->get('', 'Usuarios::index', ['as' => 'usuarios.inicio']);
+	$routes->get('crear', 'Usuarios::crear', ['as' => 'usuarios.crear']);
+	$routes->post('insertar', 'Usuarios::insertar', ['as' => 'usuarios.insertar']);
+	$routes->get('editar/(:num)', 'Usuarios::editar/$1', ['as' => 'usuarios.editar']);
+	$routes->post('actualizar', 'Usuarios::actualizar', ['as' => 'usuarios.actualizar']);
+	$routes->get('eliminar/(:num)', 'Usuarios::eliminar/$1', ['as' => 'usuarios.eliminar']);
+	$routes->get('eliminados', 'Usuarios::eliminados', ['as' => 'usuarios.eliminados']);
+	$routes->get('reingresar/(:num)', 'Usuarios::reingresar/$1', ['as' => 'usuarios.reingresar']);
+	$routes->get('editar_contrasenha', 'Usuarios::editar_contrasenha', ['as' => 'usuarios.editar_contrasenha']);
+	$routes->post('actualizar_contrasenha', 'Usuarios::actualizar_contrasenha', ['as' => 'usuarios.actualizar_contrasenha']);
+});
+
+$routes->group('cajas', function($routes){//RUTAS DE CAJAS
+	
+    $routes->get('', 'Cajas::index', ['as' => 'cajas.inicio']);
+	$routes->get('crear', 'Cajas::crear', ['as' => 'cajas.crear']);
+	$routes->post('insertar', 'Cajas::insertar', ['as' => 'cajas.insertar']);
+	$routes->get('editar/(:num)', 'Cajas::editar/$1', ['as' => 'cajas.editar']);
+	$routes->post('actualizar', 'Cajas::actualizar', ['as' => 'cajas.actualizar']);
+	$routes->get('eliminar/(:num)', 'Cajas::eliminar/$1', ['as' => 'cajas.eliminar']);
+	$routes->get('eliminados', 'Cajas::eliminados', ['as' => 'cajas.eliminados']);
+	$routes->get('reingresar/(:num)', 'Cajas::reingresar/$1', ['as' => 'cajas.reingresar']);
+});
+
+$routes->group('cajas', function($routes){//RUTAS DE CAJAS
+	
+    $routes->get('', 'Cajas::index', ['as' => 'cajas.inicio']);
+	$routes->get('crear', 'Cajas::crear', ['as' => 'cajas.crear']);
+	$routes->post('insertar', 'Cajas::insertar', ['as' => 'cajas.insertar']);
+	$routes->get('editar/(:num)', 'Cajas::editar/$1', ['as' => 'cajas.editar']);
+	$routes->post('actualizar', 'Cajas::actualizar', ['as' => 'cajas.actualizar']);
+	$routes->get('eliminar/(:num)', 'Cajas::eliminar/$1', ['as' => 'cajas.eliminar']);
+	$routes->get('eliminados', 'Cajas::eliminados', ['as' => 'cajas.eliminados']);
+	$routes->get('reingresar/(:num)', 'Cajas::reingresar/$1', ['as' => 'cajas.reingresar']);
+});
+
+$routes->get('logs', 'Logs::index', ['as' => 'logs.inicio']);//RUTA DE LOGS DE ACCESO
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -1,7 +1,7 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
-            <h2 class="mt-4"> <?php echo $titulo ?> </h2>
+            <h2 class="mt-4"> <?= $titulo ?> </h2>
 
             <?php if(count($errors)){?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -16,9 +16,9 @@
             }
             ?>
 
-            <form method = "POST" action="<?php echo base_url(); ?>/usuarios/actualizar" autocomplete = "off">
+            <form method = "POST" action="<?= route_to('usuarios.actualizar') ?>" autocomplete = "off">
 
-                <input type="hidden" name = "id" value = "<?php echo $usuario['id'] ?>">
+                <input type="hidden" name = "id" value = "<?= $usuario['id'] ?>">
                 
                 <div class="form-group">
                     <div class="row">
@@ -83,7 +83,7 @@
                 <input type="hidden" id = "clave" name = "clave" value="<?= $usuario['clave'] ?>" class="form-control" >
                 <input type="hidden" id = "clave_confirmacion" name = "clave_confirmacion" value="<?= $usuario['clave'] ?>" class="form-control" >
 
-                <a href="<?php echo base_url();?>/usuarios" class = "btn btn-primary">Regresar</a>   
+                <a href="<?= route_to('usuarios.inicio') ?>" class = "btn btn-primary">Regresar</a>   
                 <button type="submit" class = "btn btn-success">Guardar</button>
             </form>
 
