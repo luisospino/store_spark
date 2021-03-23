@@ -51,7 +51,7 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Iniciar sesión</h3></div>
                                     <div class="card-body">
 
-                                        <form method = "POST" action = "<?= base_url(); ?>/usuarios/validar">
+                                        <form method = "POST" action = "<?= route_to('usuarios.validar') ?>">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="usuario">Usuario:</label>
                                                 <input class="form-control py-4" id="usuario" name = "usuario" value="<?= old('usuario') ?>" type="text"/>

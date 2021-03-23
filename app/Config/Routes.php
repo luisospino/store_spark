@@ -34,6 +34,7 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 
 $routes->get('/', 'Usuarios::login', ['as' => 'login']);
+$routes->get('/inicio', 'Inicio::index', ['as' => 'inicio']);
 
 $routes->group('productos', function($routes){//RUTAS DE PRODUCTOS
 	
@@ -162,6 +163,8 @@ $routes->group('usuarios', function($routes){//RUTAS DE USUARIOS
 	$routes->get('eliminar/(:num)', 'Usuarios::eliminar/$1', ['as' => 'usuarios.eliminar']);
 	$routes->get('eliminados', 'Usuarios::eliminados', ['as' => 'usuarios.eliminados']);
 	$routes->get('reingresar/(:num)', 'Usuarios::reingresar/$1', ['as' => 'usuarios.reingresar']);
+	$routes->post('validar', 'Usuarios::validar', ['as' => 'usuarios.validar']);
+	$routes->get('logout', 'Usuarios::logout', ['as' => 'usuarios.logout']);
 	$routes->get('editar_contrasenha', 'Usuarios::editar_contrasenha', ['as' => 'usuarios.editar_contrasenha']);
 	$routes->post('actualizar_contrasenha', 'Usuarios::actualizar_contrasenha', ['as' => 'usuarios.actualizar_contrasenha']);
 });

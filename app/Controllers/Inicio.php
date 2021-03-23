@@ -19,6 +19,12 @@ class Inicio extends BaseController
 
 	public function index($activo = 1)
 	{	
+		if(!session()->has('rol')){
+            return redirect()->to(route_to('login'));
+        }else if(session()->get('rol') != 'Administrador'){
+            return redirect()->to(route_to('productos.inicio'));
+        }
+		
 		$productos = $this->productos->where('activo', $activo)->countAllResults();
 
 		$fecha = date('y-m-d');

@@ -221,8 +221,13 @@ class Usuarios extends BaseController
                     ]);
 
                     session()->set($datos_sesion);
+                    
+                    if($usuario['rol'] == 'Administrador'){
+                        return redirect()->to(route_to('inicio'));
+                    }else{
+                        return redirect()->to(route_to('productos.inicio'));
+                    }
 
-                    return redirect()->to(route_to('productos.inicio'));
                 }else{
                     return redirect()->back()->with('error', 'Contraseña incorrecta');
                 }

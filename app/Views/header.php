@@ -16,7 +16,7 @@
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark text-center">
-        <a class="navbar-brand" href="<?=base_url()?>/inicio"><i class="fas fa-store-alt"></i>&nbsp&nbspTIENDA ENP</a>
+        <a class="navbar-brand" href="<?= route_to('productos.inicio') ?>"><i class="fas fa-store-alt"></i>&nbsp&nbspTIENDA ENP</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
         <!-- Navbar-->
@@ -24,12 +24,12 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= session()->get('nombre')?> <i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    </i><a class="dropdown-item" href="<?= base_url(); ?>/usuarios/editar_contrasenha"><i class="fas fa-key"></i>&nbsp Cambiar contraseña</a>
+                    </i><a class="dropdown-item" href="<?= route_to('usuarios.editar_contrasenha') ?>"><i class="fas fa-key"></i>&nbsp Cambiar contraseña</a>
                     <?php if(session()->get('rol') == 'Administrador'){ ?>
                         <a class="dropdown-item" href="#"><i class="fas fa-scroll"></i>&nbsp Logs de acceso</a>
                     <?php } ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?= base_url(); ?>/usuarios/logout"><i class="fas fa-sign-out-alt"></i>&nbsp Cerrar sesión</a>
+                    <a class="dropdown-item" href="<?= route_to('usuarios.logout') ?>"><i class="fas fa-sign-out-alt"></i>&nbsp Cerrar sesión</a>
                 </div>
             </li>
         </ul>
@@ -47,15 +47,15 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<?= base_url(); ?>/productos">Productos</a>
+                                <a class="nav-link" href="<?= route_to('productos.inicio') ?>">Productos</a>
                                 <?php if(session()->get('rol') == 'Administrador'){ ?>
-                                    <a class="nav-link" href="<?= base_url(); ?>/unidades">Unidades</a>
-                                    <a class="nav-link" href="<?= base_url(); ?>/categorias">Categorías</a>
+                                    <a class="nav-link" href="<?= route_to('unidades.inicio') ?>">Unidades</a>
+                                    <a class="nav-link" href="<?= route_to('categorias.inicio') ?>">Categorías</a>
                                 <?php } ?>
                             </nav>
                         </div>
 
-                        <a class="nav-link" href="<?= base_url(); ?>/clientes">
+                        <a class="nav-link" href="<?= route_to('clientes.inicio') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Clientes
                         </a>
@@ -73,7 +73,7 @@
                                         <a class="nav-link" href="<?= route_to('compras.crear') ?>">Nueva compra</a>
                                     <?php } ?>
 
-                                    <a class="nav-link" href="<?= base_url(); ?>/compras">Compras</a>
+                                    <a class="nav-link" href="<?= route_to('compras.inicio') ?>">Compras</a>
                                 </nav>
                             </div>
                         <?php } ?>
@@ -99,13 +99,13 @@
                             <div class="collapse" id="administracion" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                 <?php if(session()->get('rol') == 'Administrador'){ ?>
-                                    <a class="nav-link" href="<?= base_url(); ?>/configuracion">Configuración</a>
-                                    <a class="nav-link" href="<?= base_url(); ?>/metodos_pagos">Métodos de pago</a>
-                                    <a class="nav-link" href="<?= base_url(); ?>/roles">Roles</a>
+                                    <a class="nav-link" href="<?= route_to('configuracion.inicio') ?>">Configuración</a>
+                                    <a class="nav-link" href="<?= route_to('metodos_pagos.inicio') ?>">Métodos de pago</a>
+                                    <a class="nav-link" href="<?= route_to('roles.inicio') ?>">Roles</a>
                                 <?php } ?>
-                                    <a class="nav-link" href="<?= base_url(); ?>/usuarios">Usuarios</a>
-                                    <a class="nav-link" href="<?= base_url(); ?>/cajas">Cajas</a>
-                                    <a class="nav-link" href="<?= base_url(); ?>/logs">Logs de acceso</a>
+                                    <a class="nav-link" href="<?= route_to('usuarios.inicio') ?>">Usuarios</a>
+                                    <a class="nav-link" href="<?= route_to('cajas.inicio') ?>">Cajas</a>
+                                    <a class="nav-link" href="<?= route_to('logs.inicio') ?>">Logs de acceso</a>
                                 </nav>
                             </div>
                         <?php } ?>
