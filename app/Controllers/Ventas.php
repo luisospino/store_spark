@@ -43,7 +43,7 @@ class Ventas extends BaseController
 
         $array = ['titulo' => 'Ventas', 'datos' => $ventas->getResultArray()];
 
-        return view('header').view('ventas/inicio', $array).view('footer');
+        return view('ventas/inicio', $array);
     }
 
     public function crear()
@@ -58,7 +58,7 @@ class Ventas extends BaseController
 
         $metodos_pagos = $this->metodos_pagos->where('activo', 1)->findAll();
         $array = ['metodos_pagos' => $metodos_pagos];
-        return view('header').view('ventas/crear', $array).view('footer');
+        return view('ventas/crear', $array);
     }
 
     public function canceladas($activo = 0)
@@ -76,7 +76,7 @@ class Ventas extends BaseController
 
         $array = ['titulo' => 'Ventas canceladas', 'datos' => $ventas->getResultArray()];
 
-        return view('header').view('ventas/canceladas', $array).view('footer');
+        return view('ventas/canceladas', $array);
     }    
 
     public function cancelar($id)
@@ -161,7 +161,7 @@ class Ventas extends BaseController
         }
 
         $array = ['id_venta' => $id_venta];
-        return view('header').view('ventas/ver_venta_pdf', $array).view('footer');
+        return view('ventas/ver_venta_pdf', $array);
     }
 
     public function generarVentaPdf($id_venta){

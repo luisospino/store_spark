@@ -30,7 +30,7 @@ class Configuracion extends BaseController
 
         $array = ['titulo' => 'Configuración de la tienda', 'configuracion' => $configuracion, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('configuracion/inicio', $array).view('footer');
+        return view('configuracion/inicio', $array);
     }
 
     public function actualizar()

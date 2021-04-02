@@ -42,7 +42,7 @@ class Usuarios extends BaseController
                     
         $array = ['titulo' => 'Usuarios', 'datos' => $usuarios->getResultArray()];
         
-        return view('header').view('usuarios/inicio', $array).view('footer');
+        return view('usuarios/inicio', $array);
     }
 
     public function eliminados($activo = 0)
@@ -62,7 +62,7 @@ class Usuarios extends BaseController
                     
         $array = ['titulo' => 'Usuarios eliminados', 'datos' => $usuarios->getResultArray()];
         
-        return view('header').view('usuarios/eliminados', $array).view('footer');
+        return view('usuarios/eliminados', $array);
     }
     
     public function crear()
@@ -80,7 +80,7 @@ class Usuarios extends BaseController
 
         $array = ['titulo' => 'Agregar usuario', 'roles' => $roles, 'cajas' => $cajas, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('usuarios/crear', $array).view('footer');
+        return view('usuarios/crear', $array);
     }
 
     public function insertar()
@@ -121,7 +121,7 @@ class Usuarios extends BaseController
 
         $array = ['titulo' => 'Editar usuario', 'usuario' => $usuario, 'roles' => $roles, 'cajas' => $cajas, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('usuarios/editar', $array).view('footer');
+        return view('usuarios/editar', $array);
     }
 
     public function actualizar()
@@ -267,7 +267,7 @@ class Usuarios extends BaseController
         }
         
         $array = ['titulo' => 'Actualizar contraseña', 'validaciones' => $this->validation->listErrors()];
-        return view('header').view('usuarios/editar_contrasenha', $array).view('footer');
+        return view('usuarios/editar_contrasenha', $array);
     }
 
     public function actualizar_contrasenha()

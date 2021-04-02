@@ -36,7 +36,7 @@ class Compras extends BaseController
         $compras = $this->compras->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Compras', 'datos' => $compras];
         
-        return view('header').view('compras/inicio', $array).view('footer');
+        return view('compras/inicio', $array);
     }
 
     public function crear()
@@ -51,7 +51,7 @@ class Compras extends BaseController
 
         $array = ['titulo' => 'Agregar compra'];
         
-        return view('header').view('compras/crear', $array).view('footer');
+        return view('compras/crear', $array);
     }
 
     public function canceladas($activo = 0)
@@ -65,7 +65,7 @@ class Compras extends BaseController
         $compras = $this->compras->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Compras canceladas', 'datos' => $compras];
         
-        return view('header').view('compras/canceladas', $array).view('footer');
+        return view('compras/canceladas', $array);
     }    
 
     public function cancelar($id)
@@ -149,7 +149,7 @@ class Compras extends BaseController
         }
 
         $array = ['id_compra' => $id_compra];
-        return view('header').view('compras/ver_compra_pdf', $array).view('footer');
+        return view('compras/ver_compra_pdf', $array);
     }
 
     public function generarCompraPdf($id_compra){

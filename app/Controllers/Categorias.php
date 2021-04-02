@@ -27,7 +27,7 @@ class Categorias extends BaseController
         $categorias = $this->categorias->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Categorías', 'datos' => $categorias];
         
-        return view('header').view('categorias/inicio', $array).view('footer');
+        return view('categorias/inicio', $array);
     }
 
     public function eliminados($activo = 0)
@@ -41,7 +41,7 @@ class Categorias extends BaseController
         $categorias = $this->categorias->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Categorias eliminadas', 'datos' => $categorias];
         
-        return view('header').view('categorias/eliminados', $array).view('footer');
+        return view('categorias/eliminados', $array);
     }
     
     public function crear()
@@ -56,7 +56,7 @@ class Categorias extends BaseController
 
         $array = ['titulo' => 'Agregar categoría', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('categorias/crear', $array).view('footer');
+        return view('categorias/crear', $array);
     }
 
     public function insertar()
@@ -90,7 +90,7 @@ class Categorias extends BaseController
         $categoria = $this->categorias->where('id', $id)->first();
         $array = ['titulo' => 'Editar categoría', 'categoria' => $categoria, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('categorias/editar', $array).view('footer');
+        return view('categorias/editar', $array);
     }
 
     public function actualizar()

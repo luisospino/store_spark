@@ -25,7 +25,7 @@ class Clientes extends BaseController
         $clientes = $this->clientes->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Clientes', 'datos' => $clientes];
         
-        return view('header').view('clientes/inicio', $array).view('footer');
+        return view('clientes/inicio', $array);
     }
 
     public function eliminados($activo = 0)
@@ -37,7 +37,7 @@ class Clientes extends BaseController
         $clientes = $this->clientes->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Clientes eliminados', 'datos' => $clientes];
         
-        return view('header').view('clientes/eliminados', $array).view('footer');
+        return view('clientes/eliminados', $array);
     }
     
     public function crear()
@@ -52,7 +52,7 @@ class Clientes extends BaseController
 
         $array = ['titulo' => 'Agregar cliente', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('clientes/crear', $array).view('footer');
+        return view('clientes/crear', $array);
     }
 
     public function insertar()
@@ -89,7 +89,7 @@ class Clientes extends BaseController
         $cliente = $this->clientes->where('id', $id)->first();
         $array = ['titulo' => 'Editar cliente', 'cliente' => $cliente, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('clientes/editar', $array).view('footer');
+        return view('clientes/editar', $array);
     }
 
     public function actualizar()

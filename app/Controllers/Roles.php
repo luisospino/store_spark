@@ -27,7 +27,7 @@ class Roles extends BaseController
         $roles = $this->roles->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Roles', 'datos' => $roles];
         
-        return view('header').view('roles/inicio', $array).view('footer');
+        return view('roles/inicio', $array);
     }
 
     public function eliminados($activo = 0)
@@ -41,7 +41,7 @@ class Roles extends BaseController
         $roles = $this->roles->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Roles eliminados', 'datos' => $roles];
         
-        return view('header').view('roles/eliminados', $array).view('footer');
+        return view('roles/eliminados', $array);
     }
     
     public function crear()
@@ -56,7 +56,7 @@ class Roles extends BaseController
 
         $array = ['titulo' => 'Agregar rol', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('roles/crear', $array).view('footer');
+        return view('roles/crear', $array);
     }
 
     public function insertar()
@@ -90,7 +90,7 @@ class Roles extends BaseController
         $rol = $this->roles->where('id', $id)->first();
         $array = ['titulo' => 'Editar rol', 'rol' => $rol, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('roles/editar', $array).view('footer');
+        return view('roles/editar', $array);
     }
 
     public function actualizar()

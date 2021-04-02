@@ -27,7 +27,7 @@ class Metodos_pagos extends BaseController
         $metodos_pagos = $this->metodos_pagos->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Métodos de pagos', 'datos' => $metodos_pagos];
         
-        return view('header').view('metodos_pagos/inicio', $array).view('footer');
+        return view('metodos_pagos/inicio', $array);
     }
 
     public function eliminados($activo = 0)
@@ -41,7 +41,7 @@ class Metodos_pagos extends BaseController
         $metodos_pagos = $this->metodos_pagos->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Métodos de pagos eliminados', 'datos' => $metodos_pagos];
         
-        return view('header').view('metodos_pagos/eliminados', $array).view('footer');
+        return view('metodos_pagos/eliminados', $array);
     }
     
     public function crear()
@@ -56,7 +56,7 @@ class Metodos_pagos extends BaseController
 
         $array = ['titulo' => 'Agregar método', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('metodos_pagos/crear', $array).view('footer');
+        return view('metodos_pagos/crear', $array);
     }
 
     public function insertar()
@@ -90,7 +90,7 @@ class Metodos_pagos extends BaseController
         $metodo_pago = $this->metodos_pagos->where('id', $id)->first();
         $array = ['titulo' => 'Editar método de pago', 'metodo_pago' => $metodo_pago, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('metodos_pagos/editar', $array).view('footer');
+        return view('metodos_pagos/editar', $array);
     }
 
     public function actualizar()

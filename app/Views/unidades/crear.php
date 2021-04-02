@@ -1,4 +1,7 @@
-<div id="layoutSidenav_content">
+<?= $this->extend('plantillas\base') ?>
+
+<?= $this->section('content') ?>
+
     <main>
         <div class="container-fluid">
             <h2 class="mt-4"> <?= $titulo ?> </h2>
@@ -41,3 +44,6 @@
 
         </div>
     </main>
+
+<?= $this->endSection() ?>
+

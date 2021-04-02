@@ -1,4 +1,7 @@
-<div id="layoutSidenav_content">
+<?= $this->extend('plantillas\base') ?>
+
+<?= $this->section('content') ?>
+
     <main>
         <div class="container-fluid mt-3">
 
@@ -32,14 +35,14 @@
                     <div class="row">
                         
                         <div class="col-12 col-sm-4">
-							<label>Código de barras</label>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text"><span class="fas fa-fw fa-barcode"></span></div>
-								</div>
+                            <label>Código de barras</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><span class="fas fa-fw fa-barcode"></span></div>
+                                </div>
                                 <input type="text" id = "codigo_barra" name = "codigo_barra" class="form-control" >								
-							</div>
-						</div>
+                            </div>
+                        </div>
 
                         <div class="col-12 col-sm-4">
                             <label>Nombre del producto</label>
@@ -106,3 +109,11 @@
             </form>
         </div>
     </main>
+
+<?= $this->endSection() ?>
+
+<?= $this->section('aditional-js') ?>
+
+    <script src="<?= base_url();?>/js/ventas.js"></script>
+    
+<?= $this->endSection() ?>

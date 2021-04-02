@@ -27,7 +27,7 @@ class Cajas extends BaseController
         $cajas = $this->cajas->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Cajas', 'datos' => $cajas];
         
-        return view('header').view('cajas/inicio', $array).view('footer');
+        return view('cajas/inicio', $array);
     }
 
     public function eliminados($activo = 0)
@@ -41,7 +41,7 @@ class Cajas extends BaseController
         $cajas = $this->cajas->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Cajas eliminadas', 'datos' => $cajas];
         
-        return view('header').view('cajas/eliminados', $array).view('footer');
+        return view('cajas/eliminados', $array);
     }
     
     public function crear()
@@ -56,7 +56,7 @@ class Cajas extends BaseController
 
         $array = ['titulo' => 'Agregar caja', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('cajas/crear', $array).view('footer');
+        return view('cajas/crear', $array);
     }
 
     public function insertar()
@@ -91,7 +91,7 @@ class Cajas extends BaseController
         $caja = $this->cajas->where('id', $id)->first();
         $array = ['titulo' => 'Editar caja', 'caja' => $caja, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('cajas/editar', $array).view('footer');
+        return view('cajas/editar', $array);
     }
 
     public function actualizar()

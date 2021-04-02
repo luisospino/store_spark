@@ -31,7 +31,7 @@ class Productos extends BaseController
         $productos = $this->productos->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Productos', 'datos' => $productos];
         
-        return view('header').view('productos/inicio', $array).view('footer');
+        return view('productos/inicio', $array);
     }
 
     public function eliminados($activo = 0)
@@ -43,7 +43,7 @@ class Productos extends BaseController
         $productos = $this->productos->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Productos eliminados', 'datos' => $productos];
         
-        return view('header').view('productos/eliminados', $array).view('footer');
+        return view('productos/eliminados', $array);
     }
     
     public function crear()
@@ -60,7 +60,7 @@ class Productos extends BaseController
         $categorias = $this->categorias->where('activo', 1)->findAll();
         $array = ['titulo' => 'Agregar producto', 'unidades' => $unidades, 'categorias' => $categorias, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('productos/crear', $array).view('footer');
+        return view('productos/crear', $array);
     }
 
     public function insertar()
@@ -106,7 +106,7 @@ class Productos extends BaseController
 
         $array = ['titulo' => 'Editar producto', 'producto' => $producto,'unidades' => $unidades, 'categorias' => $categorias, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('productos/editar', $array).view('footer');
+        return view('productos/editar', $array);
     }
 
     public function actualizar()
@@ -213,7 +213,7 @@ class Productos extends BaseController
             return redirect()->to(route_to('productos.inicio'));
         }
 
-        return view('header').view('productos/verCodigosBarrasPdf').view('footer');
+        return view('productos/verCodigosBarrasPdf');
     }
 
     public function generarCodigosBarrasPdf(){
@@ -278,7 +278,7 @@ class Productos extends BaseController
             return redirect()->to(route_to('productos.inicio'));
         }
 
-        return view('header').view('productos/verCodigosBarrasEliminadosPdf').view('footer');
+        return view('productos/verCodigosBarrasEliminadosPdf');
     }
 
     public function generarCodigosBarrasEliminadosPdf(){

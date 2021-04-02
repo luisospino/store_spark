@@ -1,4 +1,7 @@
-<div id="layoutSidenav_content">
+<?= $this->extend('plantillas\base') ?>
+
+<?= $this->section('content') ?>
+
     <main>
         <div class="container-fluid">
             <h2 class="mt-4"> <?= $titulo ?> </h2>
@@ -10,14 +13,14 @@
                     <div class="row">
 
                         <div class="col-12 col-sm-4">
-							<label>Código</label>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text"><span class="fas fa-fw fa-barcode"></span></div>
-								</div>
+                            <label>Código</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><span class="fas fa-fw fa-barcode"></span></div>
+                                </div>
                                 <input type="text" id = "codigo_compra" name = "codigo_compra" class="form-control" >								
-							</div>
-						</div>
+                            </div>
+                        </div>
 
                         <div class="col-12 col-sm-4">
                             <label>Nombre del producto</label>
@@ -54,7 +57,7 @@
                         </div>
                     </div>    
                 </div>
-     
+    
                 <table class="table table-sm table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
@@ -84,3 +87,11 @@
 
         </div>
     </main>
+
+<?= $this->endSection() ?>
+
+<?= $this->section('aditional-js') ?>
+
+    <script src="<?= base_url();?>/js/compras.js"></script>
+    
+<?= $this->endSection() ?>

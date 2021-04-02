@@ -35,7 +35,7 @@ class Inicio extends BaseController
 
 		$array = ["n_productos" => $productos, "ventas" => $ventas];
 
-		return view('header').view('inicio', $array).view('footer');
+		return view('inicio', $array);
 	}
 
 	//--------------------------------------------------------------------

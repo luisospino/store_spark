@@ -27,7 +27,7 @@ class Unidades extends BaseController
         $unidades = $this->unidades->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Unidades', 'datos' => $unidades];
         
-        return view('header').view('unidades/inicio', $array).view('footer');
+        return view('unidades/inicio', $array);
     }
 
     public function eliminados($activo = 0)
@@ -41,7 +41,7 @@ class Unidades extends BaseController
         $unidades = $this->unidades->where('activo', $activo)->findAll();
         $array = ['titulo' => 'Unidades eliminadas', 'datos' => $unidades];
         
-        return view('header').view('unidades/eliminados', $array).view('footer');
+        return view('unidades/eliminados', $array);
     }
     
     public function crear()
@@ -56,7 +56,7 @@ class Unidades extends BaseController
 
         $array = ['titulo' => 'Agregar unidad', 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('unidades/crear', $array).view('footer');
+        return view('unidades/crear', $array);
     }
 
     public function insertar()
@@ -91,7 +91,7 @@ class Unidades extends BaseController
         $unidad = $this->unidades->where('id', $id)->first();
         $array = ['titulo' => 'Editar unidad', 'unidad' => $unidad, 'validaciones' => $this->validation->listErrors()];
         
-        return view('header').view('unidades/editar', $array).view('footer');
+        return view('unidades/editar', $array);
     }
 
     public function actualizar()
