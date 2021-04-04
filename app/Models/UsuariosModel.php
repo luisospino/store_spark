@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+//use App\Entities\Usuario; //Agregando entidad
 
 class UsuariosModel extends Model
 {
@@ -10,6 +11,7 @@ class UsuariosModel extends Model
     protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
+    //protected $returnType     = 'Usuario::class';  //Para retornar objetos de tipo Entidad Usuario
     protected $useSoftDeletes = false;
 
     protected $allowedFields = ['usuario','clave','nombre','id_caja','id_rol','activo'];

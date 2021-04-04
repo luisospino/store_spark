@@ -5,7 +5,7 @@ use App\Models\UsuariosModel;
 use App\Models\RolesModel;
 use App\Models\CajasModel;
 use App\Models\LogsModel;
-
+//use App\Entities\Usuario;  //Agregando entidad
 class Usuarios extends BaseController
 {   
     protected $usuarios;
@@ -27,6 +27,17 @@ class Usuarios extends BaseController
     
     public function index($activo = 1)
     {   
+        /*
+        //Ejemplo de como usar una entidad, ver los métodos en App\Entities\Usuario
+
+        $usuario = new Usuario();//Instancia de entidad de usuario
+        $usuario->colores = ['red', 'yellow', 'green'];
+        $usuario->fecha_alta = date("Y-m-d H:m:s");
+        $usuario->clave = "qwerty";
+        $usuario->flag = 1;
+        d($usuario);
+        */
+
         if(!session()->has('rol')){
             return redirect()->to(route_to('login'));
         }else if(session()->get('rol') == 'Cajero'){
